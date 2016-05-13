@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Leads</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+		<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript">
+			$.post('/init', $(this).serialize(), function(init){
+				$('#leads').html(init)
+			});
+
+			$(document).on('keyup change submit', 'form', function(){
+				$.post('/partial/'+parseInt($(this).attr('value')), $(this).serialize(), function(leads){
+					$('#leads').html(leads);
+				});
+				return false;
+			});
+
+			$(document).on('click', 'a', function(){
+				$('#the_form').attr('value', $(this).attr('value'))
+				$('#the_form').submit();
+				return false;
+			});
+		</script>
+	</head>
+	<body>
+		<form id="the_form" value="1">
+			Name: <input type="text" name="name">
+			From: <input type="date" value="2010-01-01" name="from">
+			Date: <input type="date" value="2014-01-01" name="up_to">
+		<div id="leads">
+		</div>
+		</form>
+	</body>
+</html>

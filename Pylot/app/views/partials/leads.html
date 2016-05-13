@@ -1,0 +1,22 @@
+{% for i in range(1, leads['page_count']+1) %}
+	<span>|</span>
+	<a class="page_submit" value="{{i}}" href="">{{i}}</a>
+{% endfor %}
+<table border='1px'>
+	<tr>
+		<td>leads_id</td>
+		<td>first name</td>
+		<td>last name</td>
+		<td>registered datetime</td>
+		<td>email</td>
+	</tr>
+	{% for lead in leads['leads'] %}
+		<tr>
+			<td>{{lead['leads_id']}}</td>
+			<td>{{lead['first_name']}}</td>
+			<td>{{lead['last_name']}}</td>
+			<td>{{lead['registered_datetime']}}</td>
+			<td>{{lead['email']}}</td>
+		</tr>
+	{% endfor %}
+</table>
